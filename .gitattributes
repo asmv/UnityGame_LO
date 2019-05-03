@@ -1,0 +1,5 @@
+# Enforce line ending consistency.
+* text=auto
+
+*.png binary
+*.jpg binary
