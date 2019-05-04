@@ -31,6 +31,7 @@ namespace CoreGame.Management
         public void HandleUserInteraction(int selected)
         {
             m_loGameState = m_loGameBoard.MakeMove(m_loGameState, selected);
+            OnGameStateChanged?.Invoke(m_loGameState);
             if (m_loGameState.isWon)
             {
                 ChangeGameState(GameManagerState.ResultsDisplay);
