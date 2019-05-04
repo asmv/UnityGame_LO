@@ -1,4 +1,0 @@
-namespace CoreGame.Board.Interfaces
-{
-
-}

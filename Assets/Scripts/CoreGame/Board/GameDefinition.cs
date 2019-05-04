@@ -8,7 +8,5 @@ namespace CoreGame.Board
     {
         [SerializeField] public IGameStateDisplay<TGameState> gameStateDisplay;
         [SerializeField] public GameBoard<TGameState, TMoveDataType> boardDefiniton;
-
-        [SerializeField] public int g;
     }
 }

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64eb75cb2b754e68a59bfd3fe94f6d5a, type: 3}
-  m_Name: LightsOutGame
+  m_Script: {fileID: 11500000, guid: 57444c0ac191149dfadc839d96a0a608, type: 3}
+  m_Name: LO Game Builder
   m_EditorClassIdentifier: 
-  gameBoard: {fileID: 11400000, guid: 48f7eec2bddd546f3895b76f4757b7f7, type: 2}
-  gameBuilder: {fileID: 11400000, guid: 927c8436aa52e41a0a92385f41396206, type: 2}

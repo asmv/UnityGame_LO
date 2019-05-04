@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
-using Utility;
 
 namespace CoreGame.Board
 {
-    public class LOGameBuilder
+    [CreateAssetMenu]
+    public class LOGameBuilder : ScriptableObject
     {
-        public LOGameState CreateEmptyState(int[] dimensions)
+        public LOGameState Create(LOGameBoard gameBoard, GameInitData initData)
         {
-            return new LOGameState(dimensions);
-        }
-
-        public LOGameState CreateSolvableGameState(LOGameBoard gameBoard, int[] dimensions)
-        {
-            LOGameState loGameState = CreateEmptyState(dimensions);
+            LOGameState loGameState = gameBoard.CreateFirstState(initData);
             do
             {
                 for (int i = 0; i < m_randomScrambleMoves; ++i)

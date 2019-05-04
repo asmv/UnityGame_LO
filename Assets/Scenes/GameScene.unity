@@ -288,6 +288,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameStateDisplay: {fileID: 901133550}
   m_movesMade: {fileID: 11400000, guid: 8992954958a2544da8c0f323b4fe32a1, type: 2}
+  m_gameInitData: {fileID: 11400000, guid: 2f154eeebb94e419c87bcb6d0a1b54e8, type: 2}
+  m_lightsOutDefinition: {fileID: 11400000, guid: 135634a4d803c4d44a2f8ec406d0b33d,
+    type: 2}
 --- !u!4 &295505841
 Transform:
   m_ObjectHideFlags: 0

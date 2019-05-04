@@ -35,7 +35,7 @@ namespace CoreGame.Management
 
         public void HandleUserInteraction(int selected)
         {
-            m_loGameState = m_loGameBoard.MakeMove(m_loGameState, selected);
+            m_loGameState = m_lightsOutDefinition.gameBoard.MakeMove(m_loGameState, selected);
             m_movesMade.value += 1;
             OnGameStateChanged?.Invoke(m_loGameState);
             if (m_loGameState.isWon)
@@ -52,7 +52,7 @@ namespace CoreGame.Management
         {
             if (state == GameManagerState.ActivePlay)
             {
-                m_loGameState = m_loGameBuilder.CreateSolvableGameState(m_loGameBoard, new[] {5, 5});
+                m_loGameState = m_lightsOutDefinition.gameBuilder.Create(m_lightsOutDefinition.gameBoard, m_gameInitData);
             }
             m_gameStateDisplay.Display(m_loGameState);
             OnGameManagerStateChanged?.Invoke(state);
@@ -64,8 +64,6 @@ namespace CoreGame.Management
         }
 
         private LOGameState m_loGameState;
-        private static LOGameBuilder m_loGameBuilder = new LOGameBuilder();
-        private static LOGameBoard m_loGameBoard;
 
         private static GameManager m_instance;
     }

@@ -7,7 +7,6 @@ namespace CoreGame.Board.Interfaces
     /// <summary>
     /// Class that contains the logic for modifying the GameState with moves.
     /// </summary>
-    [CreateAssetMenu]
     public abstract class GameBoard<TGameState, TMoveDataType> : ScriptableObject where TGameState : IGameState
     {
 
