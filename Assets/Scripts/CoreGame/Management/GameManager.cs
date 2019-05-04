@@ -1,21 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CoreGame.Management
 {
     public class GameManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        public GameManager Instance => m_instance;
+
+        private void Awake()
         {
-        
+            if (m_instance == null)
+            {
+                m_instance = this;
+            }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        private GameManager m_instance;
     }
 }
