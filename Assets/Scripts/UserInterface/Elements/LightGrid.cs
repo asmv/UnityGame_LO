@@ -38,11 +38,11 @@ namespace UserInterface.Elements
                 throw new NotSupportedException($"{gameState.dimensions.Length} dimensions are not supported by this layout.");
             }
 
-            for (int i = 0; i < gameState.dimensions[0]; ++i)
+            for (int i = 0; i < gameState.dimensions[1]; ++i)
             {
                 var horizontalRow = Instantiate(m_horizontalRowPrefab, m_contentRootTransform);
                 m_horizontalRows.Add(horizontalRow);
-                for (int j = 0; j < gameState.dimensions[1]; ++j)
+                for (int j = 0; j < gameState.dimensions[0]; ++j)
                 {
                     var lightButton = Instantiate(m_selectableGridItemPrefab, horizontalRow);
                     var buttonValue = i * gameState.dimensions[0] + j;

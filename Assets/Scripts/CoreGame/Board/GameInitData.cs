@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CoreGame.Board
@@ -7,5 +8,6 @@ namespace CoreGame.Board
     {
         public int[] dimensions;
         public int numPlayers;
+        public int randomShuffleFactor;
     }
 }

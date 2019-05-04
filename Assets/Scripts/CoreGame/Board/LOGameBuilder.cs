@@ -10,16 +10,13 @@ namespace CoreGame.Board
             LOGameState loGameState = gameBoard.CreateFirstState(initData);
             do
             {
-                for (int i = 0; i < m_randomScrambleMoves; ++i)
+                for (int i = 0; i < initData.randomShuffleFactor; ++i)
                 {
                     loGameState = gameBoard.MakeRandomMove(loGameState);
                 }
             } while (loGameState.isWon); // if randomization ends up solving the game, re-randomize
 
             return loGameState;
-        }
-
-        [SerializeField] private static int m_randomScrambleMoves = 3;
-        
+        }        
     }
 }
