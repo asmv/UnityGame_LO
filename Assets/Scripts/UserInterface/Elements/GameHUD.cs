@@ -16,12 +16,20 @@ namespace UserInterface.Elements
         [SerializeField] private Text m_timerText;
         [SerializeField] private Text m_resetButtonText;
         [SerializeField] private IntReference m_movesMade;
+        [SerializeField] private Text m_winText;
         
+        /// <summary>
+        /// Formats and sets the text attribute of the moves UI element.
+        /// </summary>
+        /// <param name="moves"></param>
         public void DisplayMoves(int moves)
         {
             m_movesText.text = $"Moves: {moves}";
         }
 
+        /// <summary>
+        /// Resets the HUD to its default values.
+        /// </summary>
         public void ResetHUD()
         {
             m_movesText.text = "Moves: 0";
@@ -29,6 +37,7 @@ namespace UserInterface.Elements
             m_resetButtonText.text = "Reset";
             m_startTime = DateTime.Now;
             m_movesMade.value = 0;
+            m_winText.gameObject.SetActive(false);
         }
 
         private void HandleGameManagerStateChange(GameManagerState gameManagerState)
@@ -43,6 +52,7 @@ namespace UserInterface.Elements
             {
                 m_resetButtonText.text = "Play Again";
                 m_doUpdateTimer = false;
+                m_winText.gameObject.SetActive(true);
             }
         }
 

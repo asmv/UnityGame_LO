@@ -8,10 +8,13 @@ using Utility;
 
 namespace CoreGame.Board
 {
+    /// <summary>
+    /// Game State class, which serves as a data wrapper around several data types used to express the state of the game.
+    /// </summary>
     public class LOGameState : IGameState
     {
 
-        public LOGameState(int[] dimensions, bool[] boardState = null, bool isWon = false, List<int> lastSpacesToggled=null)
+        public LOGameState(int[] dimensions, bool[] boardState = null, bool isWon = false)
         {
             this.dimensions = dimensions;
             if (boardState == null)
@@ -24,7 +27,6 @@ namespace CoreGame.Board
                 this.boardState = boardState.Copy();
             }
 
-            this.lastSpacesToggled = lastSpacesToggled ?? new List<int>();
             this.isWon = isWon;
         }
 
@@ -45,7 +47,5 @@ namespace CoreGame.Board
         public readonly int[] dimensions;
 
         public readonly bool[] boardState;
-
-        public readonly List<int> lastSpacesToggled; // Efficiency Optimization, the interface does not need to check every tile for an update.
     }
 }

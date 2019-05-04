@@ -2,6 +2,9 @@
 
 namespace CoreGame.Board
 {
+    /// <summary>
+    /// ScriptableObject that builds the first viable state for the game, given the board and initialization data.
+    /// </summary>
     [CreateAssetMenu]
     public class LOGameBuilder : ScriptableObject
     {

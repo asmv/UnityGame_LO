@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace CoreGame.Board
 {
+    /// <summary>
+    /// ScriptableObject containing initialization parameters for any given game.
+    /// </summary>
     [CreateAssetMenu]
     public class GameInitData : ScriptableObject
     {

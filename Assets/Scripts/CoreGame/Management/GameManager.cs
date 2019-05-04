@@ -19,6 +19,9 @@ namespace CoreGame.Management
         [SerializeField] private GameInitData m_gameInitData;
         [SerializeField] private LightsOutDefinition m_lightsOutDefinition;
 
+        /// <summary>
+        /// Singleton pattern
+        /// </summary>
         private void Awake()
         {
             if (m_instance == null)
@@ -27,6 +30,9 @@ namespace CoreGame.Management
             }
         }
 
+        /// <summary>
+        /// Utility function for resetting the game from a button press.
+        /// </summary>
         public void ResetGame()
         {
             ChangeGameState(GameManagerState.ActivePlay);

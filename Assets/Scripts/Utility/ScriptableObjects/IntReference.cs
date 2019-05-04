@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Utility.ScriptableObjects
 {
+    /// <summary>
+    /// Utility ScriptableObject storing a reference to an integer.
+    /// </summary>
     [CreateAssetMenu]
     public class IntReference : ScriptableObject
     {

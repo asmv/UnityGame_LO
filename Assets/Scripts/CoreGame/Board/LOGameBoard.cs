@@ -9,6 +9,7 @@ namespace CoreGame.Board
 {
     /// <summary>
     /// Class that contains the logic for modifying the GameState with moves.
+    /// See <see cref="GameBoard{TGameState,TMoveDataType}"/> for method documentation.
     /// </summary>
     [CreateAssetMenu]
     public class LOGameBoard : GameBoard<LOGameState, int>
@@ -38,7 +39,7 @@ namespace CoreGame.Board
                 boardState[space] = !boardState[space];
             }
 
-            return new LOGameState(gameState.dimensions, boardState, CheckBoardstateWin(boardState), adjacentSpaces);
+            return new LOGameState(gameState.dimensions, boardState, CheckBoardstateWin(boardState));
         }
 
         public override List<int> GetValidMoves(LOGameState gameState)
