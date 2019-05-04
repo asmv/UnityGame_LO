@@ -13,6 +13,7 @@ namespace CoreGame.Management
 
         public event Action<GameManagerState> OnGameManagerStateChanged;
         public event Action<IGameState> OnGameStateChanged;
+        [SerializeField] private LightGrid m_gameStateDisplay;
 
         private void Awake()
         {
@@ -22,7 +23,7 @@ namespace CoreGame.Management
             }
         }
 
-        private void Start()
+        public void ResetGame()
         {
             ChangeGameState(GameManagerState.ActivePlay);
         }
@@ -32,9 +33,12 @@ namespace CoreGame.Management
             m_loGameState = m_loGameBoard.MakeMove(m_loGameState, selected);
             if (m_loGameState.isWon)
             {
-                throw new NotImplementedException();
+                ChangeGameState(GameManagerState.ResultsDisplay);
             }
-            m_gameStateDisplay.Refresh(m_loGameState);
+            else
+            {
+                m_gameStateDisplay.Refresh(m_loGameState);
+            }
         }
         
         public void ChangeGameState(GameManagerState state)
@@ -46,8 +50,12 @@ namespace CoreGame.Management
             m_gameStateDisplay.Display(m_loGameState);
             OnGameManagerStateChanged?.Invoke(state);
         }
+        
+        private void Start()
+        {
+            ResetGame();
+        }
 
-        [SerializeField] private LightGrid m_gameStateDisplay;
         private LOGameState m_loGameState;
         private static LOGameBuilder m_loGameBuilder = new LOGameBuilder();
         private static LOGameBoard m_loGameBoard = new LOGameBoard();

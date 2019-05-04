@@ -24,7 +24,7 @@ namespace CoreGame.Board
             return loGameState;
         }
 
-        [SerializeField] private static int m_randomScrambleMoves = 10;
+        [SerializeField] private static int m_randomScrambleMoves = 3;
         
     }
 }

@@ -16,11 +16,6 @@ namespace UserInterface.Elements
         [SerializeField] private Transform m_horizontalRowPrefab;
         [SerializeField] private LightButton m_selectableGridItemPrefab;
 
-        private void HandleElementSelected(int element)
-        {
-            GameManager.Instance.HandleUserInteraction(element);
-        }
-
         public void Display(LOGameState gameState)
         {
             Clear();
@@ -68,10 +63,39 @@ namespace UserInterface.Elements
             }
             m_horizontalRows.Clear();
         }
+        
+        private void HandleGameManagerStateChange(GameManagerState gameManagerState)
+        {
+            if (gameManagerState == GameManagerState.ActivePlay)
+            {
+                SetAllInteraction(true);
+            }
+
+            if (gameManagerState == GameManagerState.ResultsDisplay)
+            {
+                SetAllInteraction(false);
+            }
+        }
+
+        private void SetAllInteraction(bool buttonEnableState)
+        {
+            m_childGridItems.ForEach(button => button.SetInteraction(buttonEnableState));
+        }
+
+        private void Awake()
+        {
+            GameManager.Instance.OnGameManagerStateChanged += HandleGameManagerStateChange;
+        }
+
+        private void HandleElementSelected(int element)
+        {
+            GameManager.Instance.HandleUserInteraction(element);
+        }
 
         private void OnDestroy()
         {
             Clear();
+            GameManager.Instance.OnGameManagerStateChanged -= HandleGameManagerStateChange;
         }
 
         private List<Transform> m_horizontalRows = new List<Transform>();

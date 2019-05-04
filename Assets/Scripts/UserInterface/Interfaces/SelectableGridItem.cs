@@ -12,7 +12,7 @@ namespace UserInterface.Interfaces
 
         public virtual void SetInteraction(bool activeInteraction)
         {
-            interactable = activeInteraction;
+            m_isEnabled = activeInteraction;
         }
 
         public virtual void SetContainedValue(TContainedValue value)
@@ -22,9 +22,13 @@ namespace UserInterface.Interfaces
 
         public override void OnPointerUp(PointerEventData eventData)
         {
-            OnElementSelected?.Invoke(m_containedValue);
+            if (m_isEnabled)
+            {
+                OnElementSelected?.Invoke(m_containedValue);
+            }
         }
 
+        private bool m_isEnabled = true;
         private TContainedValue m_containedValue;
     }
 }
