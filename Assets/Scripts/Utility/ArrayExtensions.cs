@@ -16,7 +16,7 @@ namespace Utility
         public static T[] Copy<T>(this T[] source)
         {
             var ret = new T[source.Length];
-            Array.Copy(ret, source, source.Length);
+            Array.Copy(source, ret, source.Length);
             return ret;
         }
 

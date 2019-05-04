@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreGame.Board.Interfaces;
+using UnityEngine;
 using Utility;
 
 namespace CoreGame.Board
@@ -23,6 +24,10 @@ namespace CoreGame.Board
             List<int> adjacentSpaces = GetAffectedSpaces(gameState, move); // return value includes the source move
             foreach (int space in adjacentSpaces) // flip the state of any affected spaces
             {
+                if (!IsValidMove(gameState, space))
+                {
+                    Debug.Log("oops");
+                }
                 boardState[space] = !boardState[space];
             }
 
@@ -57,7 +62,7 @@ namespace CoreGame.Board
                 int spaceIndexRegion = spaceIndex/checkedDimensions[i+1]; // important! integer division!
                 int prevSpace = spaceIndex - checkedDimensions[i];
                 int nextSpace = spaceIndex + checkedDimensions[i];
-                if (prevSpace / checkedDimensions[i + 1] == spaceIndexRegion)
+                if (prevSpace > 0 && prevSpace / checkedDimensions[i + 1] == spaceIndexRegion) // The additional check is required here since integer division does not floor divide negative values
                 {
                     adjacentSpaces.Add(prevSpace);
                 }
@@ -82,7 +87,7 @@ namespace CoreGame.Board
             ret[0] = 1; // first dimension set to 0
             for (int i = 1; i < ret.Length; ++i)
             {
-                ret[i] = dimensions.ElementWiseMultiply(1, i);
+                ret[i] = dimensions.ElementWiseMultiply(0, i);
             }
 
             return ret;
