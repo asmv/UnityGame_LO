@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2726638989648459299}
   - component: {fileID: 2726638989648459486}
   - component: {fileID: 2726638989648459297}
-  - component: {fileID: 2726638989648459296}
+  - component: {fileID: 4359889210540802458}
   m_Layer: 5
   m_Name: Light
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &2726638989648459296
+--- !u!114 &4359889210540802458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2726638989648459298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: eefa6d0bf6ad54a339187984996fda03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -112,8 +112,5 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2726638989648459297}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  ActiveImage: {fileID: 21300000, guid: caf28fbecd5214979b81619f7dc8be1d, type: 3}
+  InactiveImage: {fileID: 21300000, guid: 3a45a2dfb71f449b58122d896b15b0fa, type: 3}

@@ -1,21 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UserInterface.Interfaces;
 
 namespace UserInterface.Elements
 {
-    public class LightButton : MonoBehaviour
+    [RequireComponent(typeof(Image))]
+    public class LightButton : SelectableGridItem<int>
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Sprite ActiveImage;
+        [SerializeField] private Sprite InactiveImage;
+        
+        public override void DisplayActive(bool activeState)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            gameObject.GetComponent<Image>().sprite = activeState ? ActiveImage : InactiveImage;
         }
     }
 }

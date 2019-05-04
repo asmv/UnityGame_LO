@@ -1,21 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UserInterface.Interfaces;
 
 namespace UserInterface.Elements
 {
-    public class GameHUD : MonoBehaviour
+    public class GameHUD : IGameInfoDisplay
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Text movesText;
+        [SerializeField] private Text timerText;
+
+        public void DisplayMoves(int moves)
         {
-        
+            throw new System.NotImplementedException();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ResetHUD()
         {
-        
+            throw new System.NotImplementedException();
         }
+        
+        private int m_moves;
     }
 }

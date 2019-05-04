@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6dbbeed3f2746c78b61b23f41bbebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_gameStateDisplay: {fileID: 901133550}
 --- !u!4 &295505841
 Transform:
   m_ObjectHideFlags: 0
@@ -460,6 +461,7 @@ GameObject:
   - component: {fileID: 901133548}
   - component: {fileID: 901133549}
   - component: {fileID: 901133547}
+  - component: {fileID: 901133550}
   m_Layer: 5
   m_Name: GameDisplayPanel
   m_TagString: Untagged
@@ -537,6 +539,23 @@ MonoBehaviour:
   m_FlexibleWidth: 2
   m_FlexibleHeight: 3
   m_LayoutPriority: 1
+--- !u!114 &901133550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901133545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91196d6ff856e4565869e0884c37d410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_contentRootTransform: {fileID: 901133546}
+  m_horizontalRowPrefab: {fileID: 1391553098663855447, guid: ee0788c6cad13419d8a9d695480ba731,
+    type: 3}
+  m_selectableGridItemPrefab: {fileID: 4359889210540802458, guid: b0db07f82e46f4fc68dc14e81800a516,
+    type: 3}
 --- !u!1 &1046049710
 GameObject:
   m_ObjectHideFlags: 0

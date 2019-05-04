@@ -2,13 +2,14 @@
 using CoreGame.Board;
 using CoreGame.Board.Interfaces;
 using UnityEngine;
+using UserInterface.Elements;
 using UserInterface.Interfaces;
 
 namespace CoreGame.Management
 {
     public class GameManager : MonoBehaviour
     {
-        public GameManager Instance => m_instance;
+        public static GameManager Instance => m_instance;
 
         public event Action<GameManagerState> OnGameManagerStateChanged;
         public event Action<IGameState> OnGameStateChanged;
@@ -21,9 +22,19 @@ namespace CoreGame.Management
             }
         }
 
-        private void HandleUserInteraction()
+        private void Start()
         {
-            throw new NotImplementedException();
+            ChangeGameState(GameManagerState.ActivePlay);
+        }
+
+        public void HandleUserInteraction(int selected)
+        {
+            m_loGameState = m_loGameBoard.MakeMove(m_loGameState, selected);
+            if (m_loGameState.isWon)
+            {
+                throw new NotImplementedException();
+            }
+            m_gameStateDisplay.Refresh(m_loGameState);
         }
         
         public void ChangeGameState(GameManagerState state)
@@ -32,14 +43,15 @@ namespace CoreGame.Management
             {
                 m_loGameState = m_loGameBuilder.CreateSolvableGameState(m_loGameBoard, new[] {5, 5});
             }
+            m_gameStateDisplay.Display(m_loGameState);
             OnGameManagerStateChanged?.Invoke(state);
         }
 
-        [SerializeField] private IGameStateDisplay m_gameStateDisplay;
+        [SerializeField] private LightGrid m_gameStateDisplay;
         private LOGameState m_loGameState;
         private static LOGameBuilder m_loGameBuilder = new LOGameBuilder();
         private static LOGameBoard m_loGameBoard = new LOGameBoard();
 
-        private GameManager m_instance;
+        private static GameManager m_instance;
     }
 }
