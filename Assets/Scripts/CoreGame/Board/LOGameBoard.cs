@@ -11,7 +11,17 @@ namespace CoreGame.Board
     /// Class that contains the logic for modifying the GameState with moves.
     /// </summary>
     public class LOGameBoard : GameBoard<LOGameState, int>
-    {  
+    {
+        public override LOGameState CreateFirstState(GameInitData gameInitData)
+        {
+            if (gameInitData.dimensions != null)
+            {
+                return new LOGameState(gameInitData.dimensions);
+            }
+
+            return null;
+        }
+
         public override bool IsWon(LOGameState gameState)
         {
             return gameState.isWon;

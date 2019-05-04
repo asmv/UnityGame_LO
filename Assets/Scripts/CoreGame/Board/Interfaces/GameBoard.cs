@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Utility;
 
 namespace CoreGame.Board.Interfaces
@@ -6,8 +7,17 @@ namespace CoreGame.Board.Interfaces
     /// <summary>
     /// Class that contains the logic for modifying the GameState with moves.
     /// </summary>
-    public abstract class GameBoard<TGameState, TMoveDataType> where TGameState : IGameState
+    [CreateAssetMenu]
+    public abstract class GameBoard<TGameState, TMoveDataType> : ScriptableObject where TGameState : IGameState
     {
+
+        /// <summary>
+        /// Generates a valid first state for the game.
+        /// </summary>
+        /// <param name="gameInitData">A <see cref="GameInitData"/> object containing the initialization parameters for this board.</param>
+        /// <returns></returns>
+        public abstract TGameState CreateFirstState(GameInitData gameInitData);
+        
         /// <summary>
         /// Returns a boolean value indicating whether or not the game state marks the end of the game.
         /// </summary>

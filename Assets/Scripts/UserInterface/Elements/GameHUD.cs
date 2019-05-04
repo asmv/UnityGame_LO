@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UserInterface.Interfaces;
+using Utility.ScriptableObjects;
 
 namespace UserInterface.Elements
 {
@@ -14,7 +15,7 @@ namespace UserInterface.Elements
         [SerializeField] private Text m_movesText;
         [SerializeField] private Text m_timerText;
         [SerializeField] private Text m_resetButtonText;
-
+        [SerializeField] private IntReference m_movesMade;
         
         public void DisplayMoves(int moves)
         {
@@ -27,7 +28,7 @@ namespace UserInterface.Elements
             m_timerText.text = "00:00";
             m_resetButtonText.text = "Reset";
             m_startTime = DateTime.Now;
-            m_moves = 0;
+            m_movesMade.value = 0;
         }
 
         private void HandleGameManagerStateChange(GameManagerState gameManagerState)
@@ -47,8 +48,7 @@ namespace UserInterface.Elements
 
         private void HandleGameStateChange(IGameState gameState)
         {
-            m_moves += 1;
-            DisplayMoves(m_moves);
+            DisplayMoves(m_movesMade.value);
         }
         
         private void Start()
@@ -74,6 +74,5 @@ namespace UserInterface.Elements
 
         private DateTime m_startTime;
         private bool m_doUpdateTimer = true;
-        private int m_moves = 0;
     }
 }

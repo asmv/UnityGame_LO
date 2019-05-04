@@ -1,0 +1,4 @@
+namespace CoreGame.Board.Interfaces
+{
+
+}
