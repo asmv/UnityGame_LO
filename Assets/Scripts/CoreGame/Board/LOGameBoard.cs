@@ -58,7 +58,7 @@ namespace CoreGame.Board
                 int spaceIndexRegion = spaceIndex/checkedDimensions[i+1]; // important! integer division!
                 int prevSpace = spaceIndex - checkedDimensions[i];
                 int nextSpace = spaceIndex + checkedDimensions[i];
-                if (prevSpace > 0 && prevSpace / checkedDimensions[i + 1] == spaceIndexRegion) // The additional check is required here since integer division does not floor divide negative values
+                if (prevSpace >= 0 && prevSpace / checkedDimensions[i + 1] == spaceIndexRegion) // The additional check is required here since integer division does not floor divide negative values
                 {
                     adjacentSpaces.Add(prevSpace);
                 }
