@@ -36,8 +36,11 @@ namespace UserInterface.Elements
                 for (int j = 0; j < gameState.dimensions[1]; ++j)
                 {
                     var lightButton = Instantiate(m_selectableGridItemPrefab, horizontalRow);
-                    lightButton.DisplayActive(gameState.boardState[i*gameState.dimensions[0]+j]);
+                    var buttonValue = i * gameState.dimensions[0] + j;
+                    lightButton.SetContainedValue(buttonValue);
+                    lightButton.DisplayActive(gameState.boardState[buttonValue]);
                     lightButton.OnElementSelected += HandleElementSelected;
+                    m_childGridItems.Add(lightButton);
                 }
             }
         }

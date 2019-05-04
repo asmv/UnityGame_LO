@@ -24,10 +24,6 @@ namespace CoreGame.Board
             List<int> adjacentSpaces = GetAffectedSpaces(gameState, move); // return value includes the source move
             foreach (int space in adjacentSpaces) // flip the state of any affected spaces
             {
-                if (!IsValidMove(gameState, space))
-                {
-                    Debug.Log("oops");
-                }
                 boardState[space] = !boardState[space];
             }
 

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UserInterface.Interfaces
@@ -19,7 +20,7 @@ namespace UserInterface.Interfaces
             m_containedValue = value;
         }
 
-        private void OnMouseUp()
+        public override void OnPointerUp(PointerEventData eventData)
         {
             OnElementSelected?.Invoke(m_containedValue);
         }
