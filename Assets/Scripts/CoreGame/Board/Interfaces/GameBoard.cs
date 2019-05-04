@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Utility;
 
 namespace CoreGame.Board.Interfaces
 {
@@ -35,6 +36,21 @@ namespace CoreGame.Board.Interfaces
         /// <param name="gameState">The <see cref="TGameState"/> against which to compare the provided <paramref name="move"/>.</param>
         /// <param name="move">The move to check validity for.</param>
         /// <returns><c>true</c> if the move is valid for the given board, <c>false</c> otherwise.</returns>
-        public abstract bool IsValidMove(TGameState gameState, TMoveDataType move);
+        public virtual bool IsValidMove(TGameState gameState, TMoveDataType move)
+        {
+            return GetValidMoves(gameState).Contains(move);
+        }
+
+        /// <summary>
+        /// Chooses a random move and returns the state resulting from taking that move.
+        /// </summary>
+        /// <param name="gameState">A <see cref="TGameState"/> representing the state of the game prior to making the move.</param>
+        /// <returns>A new <see cref="TGameState"/> representing the state of the game after the move is made and <c>null</c> if there are no available moves.</returns>
+        public virtual TGameState MakeRandomMove(TGameState gameState)
+        {
+            var validMoves = GetValidMoves(gameState);
+            if (validMoves.Count == 0) return null;
+            return MakeMove(gameState, validMoves.Choice());
+        }
     }
 }
