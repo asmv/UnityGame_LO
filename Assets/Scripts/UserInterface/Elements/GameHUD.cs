@@ -53,6 +53,7 @@ namespace UserInterface.Elements
         
         private void Start()
         {
+            ResetHUD();
             GameManager.Instance.OnGameManagerStateChanged += HandleGameManagerStateChange;
             GameManager.Instance.OnGameStateChanged += HandleGameStateChange;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CoreGame.Board;
 using CoreGame.Board.Interfaces;
 using CoreGame.Management;
@@ -18,7 +19,20 @@ namespace UserInterface.Elements
 
         public void Display(LOGameState gameState)
         {
-            Clear();
+            if (m_currentBoardDimensions != null && m_currentBoardDimensions.SequenceEqual(gameState.dimensions))
+            {
+                Refresh(gameState);
+            }
+            else
+            {
+                Clear();
+                InstantiateElements(gameState);
+                m_currentBoardDimensions = gameState.dimensions;
+            }
+        }
+
+        private void InstantiateElements(LOGameState gameState)
+        {
             if (gameState.dimensions.Length != 2)
             {
                 throw new NotSupportedException($"{gameState.dimensions.Length} dimensions are not supported by this layout.");
@@ -42,7 +56,12 @@ namespace UserInterface.Elements
 
         public void Refresh(LOGameState gameState)
         {
-            foreach (int i in gameState.lastSpacesToggled)
+            // Leaving this optimization unused in favor of a more cautious implementation (if GameManager skips a step without sending an event, this will still be accurate)
+//            foreach (int i in gameState.lastSpacesToggled)
+//            {
+//                m_childGridItems[i].DisplayActive(gameState.boardState[i]);
+//            }
+            for (int i = 0; i < gameState.boardState.Length; ++i)
             {
                 m_childGridItems[i].DisplayActive(gameState.boardState[i]);
             }
@@ -85,6 +104,7 @@ namespace UserInterface.Elements
         private void Awake()
         {
             GameManager.Instance.OnGameManagerStateChanged += HandleGameManagerStateChange;
+            GameManager.Instance.OnGameStateChanged += Display;
         }
 
         private void HandleElementSelected(int element)
@@ -96,8 +116,10 @@ namespace UserInterface.Elements
         {
             Clear();
             GameManager.Instance.OnGameManagerStateChanged -= HandleGameManagerStateChange;
+            GameManager.Instance.OnGameStateChanged -= Display;
         }
 
+        private int[] m_currentBoardDimensions;
         private List<Transform> m_horizontalRows = new List<Transform>();
         private List<LightButton> m_childGridItems = new List<LightButton>();
     }

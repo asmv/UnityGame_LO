@@ -13,9 +13,8 @@ namespace CoreGame.Management
         public static GameManager Instance => m_instance;
 
         public event Action<GameManagerState> OnGameManagerStateChanged;
-        public event Action<IGameState> OnGameStateChanged;
+        public event Action<LOGameState> OnGameStateChanged;
         
-        [SerializeField] private LightGrid m_gameStateDisplay;
         [SerializeField] private IntReference m_movesMade;
         [SerializeField] private GameInitData m_gameInitData;
         [SerializeField] private LightsOutDefinition m_lightsOutDefinition;
@@ -42,10 +41,6 @@ namespace CoreGame.Management
             {
                 ChangeGameState(GameManagerState.ResultsDisplay);
             }
-            else
-            {
-                m_gameStateDisplay.Refresh(m_loGameState);
-            }
         }
         
         public void ChangeGameState(GameManagerState state)
@@ -54,8 +49,8 @@ namespace CoreGame.Management
             {
                 m_loGameState = m_lightsOutDefinition.gameBuilder.Create(m_lightsOutDefinition.gameBoard, m_gameInitData);
             }
-            m_gameStateDisplay.Display(m_loGameState);
             OnGameManagerStateChanged?.Invoke(state);
+            OnGameStateChanged?.Invoke(m_loGameState);
         }
         
         private void Start()
